@@ -16,6 +16,13 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+   res.header("Access-Control-Allow-Headers", "*");
+    next();
+  });
+
+
 mongoose.connect(dbConfig.url, {
 	useNewUrlParser: true
 }).then(() => {

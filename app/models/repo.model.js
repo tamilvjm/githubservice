@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 
 const RepoSchema = mongoose.Schema({
     username: String,
-    title: String,
-    stars: Number
+    name: String,
+    description: String,
+    stargazers_count: Number,
+    html_url: String
 }, {
     timestamps: true
 });

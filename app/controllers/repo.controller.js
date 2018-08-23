@@ -3,20 +3,14 @@ const Repo = require('../models/repo.model.js');
 
 exports.create = (req, res) => {
 
-    if(!req.body.content) {
+    if(!req.body) {
         return res.status(400).send({
             message: "can not be empty"
         });
     }
 
-
-    const repo = new Repo({ //Need to change the schema to accept array
-        username: req.body.username,
-        title: req.body.reponame, 
-        stars: req.body.stars
-    });
-
-    repo.save()
+    console.log(req.body);
+    Repo.collection.insertMany(req.body)
     .then(data => {
         res.send(data);
     }).catch(err => {
@@ -27,9 +21,9 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    Repo.find()
+    Repo.find({ username: req.params.username }).select().exec()
     .then(repos => {
-        res.send(repos);
+        res.json(repos);
     }).catch(err => {
         res.status(500).send({
             message: err.message || "Some error occurred while retrieving."

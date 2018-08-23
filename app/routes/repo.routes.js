@@ -5,6 +5,6 @@ module.exports = (app) => {
     app.post('/repos', repos.create);
 
  
-    app.get('/repos', repos.findAll);
+    app.get('/repos/:username', repos.findAll);
 
 }
