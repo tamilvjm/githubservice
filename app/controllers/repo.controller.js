@@ -31,3 +31,11 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.getAccessToken = (req, res) => {
+    if(global.globalCacheObject[req.params.username]){
+        res.json({ accessToken: global.globalCacheObject[req.params.username]});
+    } else {
+        res.redirect('/auth');
+    }
+};
+

@@ -6,5 +6,6 @@ module.exports = (app) => {
 
  
     app.get('/repos/:username', repos.findAll);
+    app.get('/accesstoken/:username', repos.getAccessToken);
 
 }
